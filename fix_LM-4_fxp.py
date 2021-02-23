@@ -35,7 +35,6 @@ def convertFxp(path):
                         block = insertUnknownBlock2(block, b'HaPa')
                     else:
                         block = insertUnknownBlock2(block, b'HaSm')
-                    pass
                 else:
                     block = insertUnknownBlock2(block, b'HaPa')
             newFxpContent += block
