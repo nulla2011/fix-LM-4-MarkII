@@ -31,10 +31,10 @@ def convertFxp(path):
                            count=1)
             if count > 0:
                 if "Reso" in fName:  #Reso Kit preset has multiple samples in one pad
-                    """ if findHaPa(block) is True:
+                    if findHaPa(block) is True:
                         block = insertUnknownBlock2(block, b'HaPa')
                     else:
-                        block = insertUnknownBlock2(block, b'HaSm') """  #old function ,deprecated
+                        block = insertUnknownBlock2(block, b'HaSm')
                     pass
                 else:
                     block = insertUnknownBlock2(block, b'HaPa')
@@ -73,29 +73,25 @@ def doubleBackslash(str):
 
 if __name__ == "__main__":
     installPath = input(
-        "Input your \"Processed Studio Kits\" folder path (ends with \"Processed Studio Kits\"):\n"
+        "Input your \"Processed Studio Kits\" folder path (ends with \"Processed Studio Kits\"):\nexample: C:\Program Files (x86)\Steinberg\Vstplugins\LM-4 MarkII\Processed Studio Kits\n"
     )
     if installPath.endswith("\\") or installPath.endswith("/"):
         installPath = installPath[:-1]
-    if len(sys.argv)>=2:
-        fxpPath=sys.argv[2]
-        
-    else:
-        try:
-            fileList = os.listdir(installPath)
-        except FileNotFoundError:
-            print("file not found")
-            sys.exit(0)
-        fxpList = []
-        for f in fileList:
-            if f.lower().endswith(".fxp"):
-                fxpList.append(f)
-        if len(fxpList) == 0:
-            print("can't find fxp files, please check directory")
-            sys.exit(0)
-        print(f"found {len(fxpList)} fxp files, processing...")
-        for f in fxpList:
-            print(f"converting {f} ...")
-            convertFxp(installPath + "\\" + f)
-            if f == fxpList[-1]:
-                print("all finished, converted preset files are in current folder")
+    try:
+        fileList = os.listdir(installPath)
+    except FileNotFoundError:
+        print("file not found")
+        sys.exit(0)
+    fxpList = []
+    for f in fileList:
+        if f.lower().endswith(".fxp"):
+            fxpList.append(f)
+    if len(fxpList) == 0:
+        print("can't find fxp files, please check directory")
+        sys.exit(0)
+    print(f"found {len(fxpList)} fxp files, processing...")
+    for f in fxpList:
+        print(f"converting {f} ...")
+        convertFxp(installPath + "\\" + f)
+        if f == fxpList[-1]:
+            print("all finished, converted preset files are in current folder")
