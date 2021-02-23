@@ -74,6 +74,7 @@ if __name__ == "__main__":
     installPath = input(
         "Input your \"Processed Studio Kits\" folder path (ends with \"Processed Studio Kits\"):\nexample: C:\Program Files (x86)\Steinberg\Vstplugins\LM-4 MarkII\Processed Studio Kits\n"
     )
+    assert os.path.isdir(installPath), "illegal path"
     if installPath.endswith("\\") or installPath.endswith("/"):
         installPath = installPath[:-1]
     try:
