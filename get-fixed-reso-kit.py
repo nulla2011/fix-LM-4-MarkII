@@ -52,4 +52,4 @@ if __name__ == "__main__":
     newFxpContent = replacePath(fxpData, installPath)
     with open(installPath + "\\04 Reso Kit_fix.fxp", 'wb') as fw:
         fw.write(newFxpContent)
-    print(f"Success, fixed preset file is in \"{installPath}\"")
+    print(f"Success, the fixed preset file path is \"{installPath}\\04 Reso Kit_fix.fxp\"")

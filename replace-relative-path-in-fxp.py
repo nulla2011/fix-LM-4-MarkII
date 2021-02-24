@@ -18,7 +18,7 @@ if __name__ == "__main__":
             if m is None:
                 newFxpContent += fxpContent[pos:]
                 break
-            fNameWithParentDir = m.group(2).replace(b"\\", b"/")
+            fNameWithParentDir = m.group(2).replace(b"\\", b"\\\\")
             repl = b'HaSm' + unknownBlock1 + fNameWithParentDir
             newFxpContent += re.sub(pattern,
                                     repl,
