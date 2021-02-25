@@ -11,7 +11,7 @@ unknownBlock2 = bytes.fromhex(
 
 def convertFxp(path):
     newFxpContent = b""
-    fName = os.path.split(f)[1]
+    fName = os.path.split(path)[1]
     with open(path, 'rb') as fr:
         fxpContent = fr.read()
         pattern = re.compile(br'HaSm(.|\n)*?(\\[\w ]*\\[\w ]*\.aif)')
