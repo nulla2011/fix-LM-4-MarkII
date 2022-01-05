@@ -15,7 +15,7 @@ def convertFxp(path):
     fPath = os.path.split(path)[0]
     with open(path, 'rb') as fr:
         fxpContent = fr.read()
-        pattern = re.compile(br'HaSm(.|\n)*?(\\[\w ]*\\[\w ]*\.aif)')
+        pattern = re.compile(br'HaSm(.|\n)*?(\\[\w ]*\.aif)')
         pos = 0
         count = 0
         while 1:
@@ -23,9 +23,9 @@ def convertFxp(path):
             if m is None:
                 newFxpContent += insertUnknownBlock2(fxpContent[pos:], b'Harp')
                 break
-            aNameWithParentDir = m.group(2).replace(b"\\", b"\\\\")
-            repl = b'HaSm' + unknownBlock1 + bytes(
-                doubleBackslash(fPath), 'utf-8') + aNameWithParentDir
+            aName = m.group(2).replace(b"\\", b"\\\\")
+            repl = b'HaSm' + unknownBlock1 + bytes(doubleBackslash(fPath),
+                                                   'utf-8') + aName
             block = re.sub(pattern,
                            repl,
                            fxpContent[pos:pos + m.end()],
@@ -73,7 +73,7 @@ def doubleBackslash(str):
 
 if __name__ == "__main__":
     installPath = input(
-        "Input your \"Processed Studio Kits\" folder path (ends with \"Processed Studio Kits\"):\nexample: C:\Program Files (x86)\Steinberg\Vstplugins\LM-4 MarkII\Processed Studio Kits\n"
+        "Input your preset & sample folder path: \nexample: C:\Program Files (x86)\Steinberg\Vstplugins\LM-4 MarkII\Wizoo Kits - Part1\Wizoo Presets & Samples\Latin Grooves Kits\n"
     )
     assert os.path.isdir(installPath), "illegal path"
     if installPath.endswith("\\") or installPath.endswith("/"):
